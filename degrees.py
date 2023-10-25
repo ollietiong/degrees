@@ -3,7 +3,7 @@ import sys
 
 from util import Node, StackFrontier, QueueFrontier
 
-# Maps names to a set of corresponding person_ids - little test
+# Maps names to a set of corresponding person_ids 
 names = {}
 
 # Maps person_ids to a dictionary of: name, birth, movies (a set of movie_ids)
@@ -91,8 +91,43 @@ def shortest_path(source, target):
 
     If no possible path, returns None.
     """
+    
 
-    # TODO
+    # create instance of first node using source
+    # create goal state 
+    # create instance of frontier
+    # create current state
+    # create explored nodes 
+
+    # add start node to frontier
+
+    #### MAKE THE FOLLOWING RECURSIVE / repeated
+    # set as current node
+
+    # move down path from node-->
+    # --> call neighbours for person function
+    #       neighbors = neighbors_for_person(current_node)
+
+    # check neighbors for goal state
+    #   if goal in neighbors:
+    #       add path to some data structure, exit recursion
+    #  
+
+    # loop over list adding nodes to frontier
+    #    for i in neighbors;
+    #       create node
+    #       add to stack
+
+    # set current node to top of stack
+    # call neighbours for person function
+    #   neighbors = neighbors_for_person(current_node)
+
+    # calculate shortest path from data structure where paths are stored
+    # return shortest path
+
+
+
+
     raise NotImplementedError
 
 

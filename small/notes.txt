@@ -1,0 +1,3 @@
+input name
+call person_id_forn_name function
+(use id)
