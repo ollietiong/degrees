@@ -107,10 +107,16 @@ def shortest_path(source, target):
     # add start node to frontier
     frontier.add(start_node)
 
-    path = None
-    while path == None: 
+    path = []
+    # add start node to path
+    connection = 0
+
+
+    while connection == 0:
         #### MAKE THE FOLLOWING RECURSIVE / repeated
         # set as current node
+        # add current node to path
+        
 
         # move down path from node-->
         # --> call neighbours for person function
@@ -119,8 +125,9 @@ def shortest_path(source, target):
         # check neighbors for goal state
         for i,j in neighbors: # (movie_id- i, person_id - j
             if goal_node.state == j:
-                path = (i,j)# path - (movie_id, person_id)
-                print(path)
+                path_x = (i,j)# path - (movie_id, person_id)
+                path.append(path_x)
+                connection = 1
                 return path
         #       add path to some data structure, exit recursion
         #  
