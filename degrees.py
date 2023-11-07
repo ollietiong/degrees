@@ -119,12 +119,7 @@ def shortest_path(source, target):
         # check if node is goal, then we have solution
         if node.state == goal_node.state:
             # find path
-            path = []
-            while node.parent is not None:
-                path.append((node.action,node.state))
-                node = node.parent
-            path.reverse()
-            return path
+            return find_path(node)
 
         # (otherwise if solution not found) mark node as explored
         explored.add(node.state)
@@ -133,11 +128,22 @@ def shortest_path(source, target):
 
         # check neighbors for goal state
         for movie_id,person_id in neighbors: # (movie_id- i, person_id - j
+            # add more efficient solution by checking for goal node at this point
+
             
             # otherwise add nodes to frontier from neighbours
             if person_id not in explored:
                 frontier.add(Node(person_id,node, movie_id))
 
+def find_path(node):
+    path = []
+    while node.parent is not None:
+        path.append((node.action,node.state))
+        node = node.parent
+        path.reverse()
+    return path
+
+    
 
 
 def person_id_for_name(name):
