@@ -79,6 +79,7 @@ def main():
         degrees = len(path)
         print(f"{degrees} degrees of separation.")
         path = [(None, source)] + path
+        print(path)
         for i in range(degrees):
             person1 = people[path[i][1]]["name"]
             person2 = people[path[i + 1][1]]["name"]
@@ -93,60 +94,49 @@ def shortest_path(source, target):
 
     If no possible path, returns None.
     """
-    # create instance of first node using source (Node(state,parent,action))
-    # create node index
+    # Implement a breadth-first search (BFS)
+
+    # create start and goal nodes
     start_node = Node(source, None, None)
-    # create goal state 
     goal_node = Node(target, None, None)
     # create instance of frontier
     frontier = QueueFrontier()
     # create current state
     current_node = start_node
-    # create explored nodes 
+    # create explored nodes set
     explored = set()
     # add start node to frontier
     frontier.add(start_node)
 
-    path = []
-    # add start node to path
-    connection = 0
 
+    while True:
 
-    while connection == 0:
-        #### MAKE THE FOLLOWING RECURSIVE / repeated
-        # set as current node
-        # add current node to path
+        if frontier.empty() == True: # all options exhausted from frontier
+            return None
         
+        node = frontier.remove()
 
-        # move down path from node-->
-        # --> call neighbours for person function
-        neighbors = neighbors_for_person(current_node.state)
+        # check if node is goal, then we have solution
+        if node.state == goal_node.state:
+            # find path
+            path = []
+            while node.parent is not None:
+                path.append((node.action,node.state))
+                node = node.parent
+            path.reverse()
+            return path
+
+        # (otherwise if solution not found) mark node as explored
+        explored.add(node.state)
+
+        neighbors = neighbors_for_person(node.state)
 
         # check neighbors for goal state
-        for i,j in neighbors: # (movie_id- i, person_id - j
-            if goal_node.state == j:
-                path_x = (i,j)# path - (movie_id, person_id)
-                path.append(path_x)
-                connection = 1
-                return path
-        #       add path to some data structure, exit recursion
-        #  
-
-        # loop over list adding nodes to frontier
-        for i,j in neighbors:
-            frontier.add(Node(j,current_node.state, i))
-        #       create node
-        #       add to stack
-
-
-        # set current node to top of stack- do i need to remove from stack?
-        current_node = frontier.remove()
-    # call neighbours for person function
-    
-    
-
-    # calculate shortest path from data structure where paths are stored
-    # return shortest path
+        for movie_id,person_id in neighbors: # (movie_id- i, person_id - j
+            
+            # otherwise add nodes to frontier from neighbours
+            if person_id not in explored:
+                frontier.add(Node(person_id,node, movie_id))
 
 
 
