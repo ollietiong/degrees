@@ -1,4 +1,6 @@
-# CS50 Introduction to Artificial Intelligence - PSet 1 - Degrees
+# Degrees
 
-A program that determines how many “degrees of separation” apart two actors are.
-Combining this pset with starting to learn Git and Github.
+A program that determines how many “degrees of separation” apart two actors are.  
+Part of the Harvard Intro to Artificial Intelligence PSets
+
+It uses a breadth-first search algorithm in combination with a Queue Frontier.
